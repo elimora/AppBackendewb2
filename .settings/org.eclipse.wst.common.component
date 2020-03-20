@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?><project-modules id="moduleCoreId" project-version="1.5.0">
+    <wb-module deploy-name="AppBackEnd">
+        <wb-resource deploy-path="/" source-path="/WebContent" tag="defaultRootSource"/>
+        <wb-resource deploy-path="/WEB-INF/classes" source-path="/src"/>
+        <wb-resource deploy-path="/WEB-INF/classes" source-path="/Servlet"/>
+        <wb-resource deploy-path="/WEB-INF/classes" source-path="/Controller"/>
+        <wb-resource deploy-path="/WEB-INF/classes" source-path="/Helpers"/>
+        <property name="context-root" value="AppBackEnd"/>
+        <property name="java-output-path" value="/AppBackEnd/build/classes"/>
+    </wb-module>
+</project-modules>

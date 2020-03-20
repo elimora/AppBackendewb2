@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="assets/css/bootstrap.min.css">
+    <title>miYoutube</title>
+    <style>
+        body {
+            padding: 20px;
+        }
+
+        form {
+            width: 600px;
+            margin: auto;
+        }
+    </style>
+</head>
+
+<body>
+
+    <form>
+        <div class="form-group">
+            <label for="exampleInputEmail1">Usuario</label>
+            <input type="email" class="form-control" id="user" aria-describedby="emailHelp">
+
+        </div>
+        <div class="form-group">
+            <label for="exampleInputPassword1">Password</label>
+            <input type="password" class="form-control" id="password">
+        </div>
+        <div class="form-group form-check">
+            <input type="checkbox" class="form-check-input" id="exampleCheck1">
+            <label class="form-check-label" for="exampleCheck1">Check me out</label>
+        </div>
+        <button type="submit" class="btn btn-primary" onclick="enviar()">Submit</button>
+        <br><br>
+
+    </form>
+<div style="margin: auto; width: 600px;">
+    <button class="btn btn-primary" onclick="ObtenerUsuario()">Obterer Usuario</button>
+    <br><br>
+    <button class="btn btn-primary" onclick="salir()">Cerrar</button>
+    <br><br>
+    <button class="btn btn-primary" onclick="Registrar()">Registrar</button>
+
+    <br><br>
+    <button class="btn btn-primary" onclick="Actualizar()">ActualizarPass</button>
+    <br><br>
+    <button class="btn btn-primary" onclick="Eliminar()">Eliminar usuario</button>
+</div>
+    
+    <script>
+
+        //******tomar el imput para tomar y luego enviar estos valores*******
+
+        var user = document.getElementById("user");
+        var passwordInput = document.getElementById("password");
+
+
+
+        //********disenio de funcionalidad para los envios************** 
+
+        const enviar = () => {
+
+
+            //formdata permite enviar informacion en forma de key: value al servidor
+            // cuando esta haciendo el XML HTTP requests
+            var miForm = new FormData();
+
+            miForm.append("password", passwordInput.value);
+            miForm.append("id", user.value);
+
+            const params = {
+                method: "POST",
+                body: miForm
+
+            }
+            //el fetch envia la peticion al servidor
+            fetch("/AppBackEnd/Login", params).then(res => {
+                console.log(res);
+                return res.text();
+            }).then(data => {
+                alert(data)
+            }).catch(erro => {
+                alert(erro)
+            })
+        }
+
+        const ObtenerUsuario = () => {
+
+
+            //formdata permite enviar informacion en forma de key: value al servidor
+            // cuando esta haciendo el XML HTTP requests
+            var miForm = new FormData();
+
+            const params = {
+                method: "GET",
+        
+            }
+            //el fetch envia la peticion al servidor
+            fetch("/AppBackEnd/User1", params).then(res => {
+                console.log(res);
+                return res.text();
+            }).then(data => {
+                alert(data)
+            }).catch(erro => {
+                alert(erro)
+            })
+        }
+
+        const salir = () => {
+            fetch("/AppBackEnd/LogOut").then(res => {
+                console.log(res);
+                return res.text();
+            }).then(data => {
+                alert(data)
+            }).catch(erro => {
+                alert(erro)
+            })
+        }
+        const Actualizar =() => {
+            //formdata se usa pare enviar data de un formulario a un servidor
+            var miForm = new FormData();
+            miForm.append("password", passwordInput.value);
+            miForm.append("id", user.value);
+            console.log(passwordInput.value)
+            const params = {
+                method: "PUT",
+                body: miForm
+
+            }
+            //el fetch envia la peticion al servidor
+            fetch("/AppBackEnd/User1", params).then(res => {
+                console.log(res);
+                return res.text();
+            }).then(data => {
+                alert(data)
+            }).catch(erro => {
+                alert(erro)
+            })
+        }
+
+        const Eliminar =() => {
+            //formdata se usa pare enviar data de un formulario a un servidor
+
+            const params = {
+                method: "DELETE"
+            }
+            //el fetch envia la peticion al servidor
+            fetch("/AppBackEnd/User1", params).then(res => {
+                console.log(res);
+                return res.text();
+            }).then(data => {
+                alert(data)
+            }).catch(erro => {
+                alert(erro)
+            })
+        }
+
+        const Registrar = () => {
+            //formdata se usa pare enviar data de un formulario a un servidor
+            var miForm = new FormData();
+            miForm.append("password", passwordInput.value);
+            miForm.append("id", user.value);
+
+            const params = {
+                method: "POST",
+                body: miForm
+
+            }
+            //el fetch envia la peticion al servidor
+            fetch("/AppBackEnd/Register", params).then(res => {
+                console.log(res);
+                return res.text();
+            }).then(data => {
+                alert(data)
+            }).catch(erro => {
+                alert(erro)
+            })
+        }
+
+    </script>
+</body>
+
+</html>
